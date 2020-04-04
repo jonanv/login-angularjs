@@ -8,10 +8,10 @@
 [![License][license-badge]][license-url]
 
 <!-- # Site -->
-<!-- ![Spotify angularjs](https://i.imgur.com/B2heenX.png) -->
+<!-- ![login angularjs](https://i.imgur.com/B2heenX.png) -->
 
 # Install dependences
-in ```auth0-angularjs/```
+in ```login-angularjs/```
 
 ```bash
 npm install
@@ -56,7 +56,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 # Server local
 install global ```sudo npm i -g http-server```
 
-deploy in ```/spotify-angularjs/dist/spotify-angularjs/```
+deploy in ```/login-angularjs/dist/login-angularjs/```
 
 ```javascript
 http-server
