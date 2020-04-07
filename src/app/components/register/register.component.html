@@ -2,7 +2,7 @@
     <div class="container-login100">
         <div class="wrap-login100 p-t-50 p-b-90">
 
-            <form class="login100-form validate-form flex-sb flex-w" (ngSubmit)="onSubmit()">
+            <form class="login100-form validate-form flex-sb flex-w" (ngSubmit)="onSubmit(formRegister)" #formRegister="ngForm">
 
                 <span class="login100-form-title p-b-51">
                     Crear nueva cuenta
@@ -10,19 +10,19 @@
 
                 <!-- <span class="text-danger">El correo es obligatorio</span> -->
                 <div class="wrap-input100 m-b-16">
-                    <input class="input100" type="text" name="email" placeholder="Email" [(ngModel)]="user.email">
+                    <input class="input100" type="email" name="email" placeholder="Email" [(ngModel)]="user.email" email required>
                     <span class="focus-input100"></span>
                 </div>
 
                 <!-- <span class="text-danger">El nombre es obligatorio</span> -->
                 <div class="wrap-input100 m-b-16">
-                    <input class="input100" type="text" name="nombre" placeholder="Nombre y apellidos" [(ngModel)]="user.name">
+                    <input class="input100" type="text" name="nombre" placeholder="Nombre y apellidos" [(ngModel)]="user.name" minlength="2" required>
                     <span class="focus-input100"></span>
                 </div>
 
                 <!-- <span class="text-danger">La contraseña debe de ser más de 6 letras</span> -->
                 <div class="wrap-input100 m-b-16" data-validate="Password is required">
-                    <input class="input100" type="password" name="pass" placeholder="Password" [(ngModel)]="user.password">
+                    <input class="input100" type="password" name="password" placeholder="Password" [(ngModel)]="user.password" minlength="6" required>
                     <span class="focus-input100"></span>
                 </div>
 
