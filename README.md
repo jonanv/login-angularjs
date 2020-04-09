@@ -53,6 +53,24 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ***
 
+# Create component without .spect (--skipTests)
+```javascript
+ng generate component components/login --skipTests
+```
+or
+```javascript
+ng g c component/login ---skipTests
+```
+
+# Create service without .spect
+```javascript
+ng generate service services/auth --skipTests
+```
+or
+```javascript
+ng g s services/auth --skipTests
+```
+
 # Server local
 install global ```sudo npm i -g http-server```
 
