@@ -35,7 +35,14 @@ export class AuthService {
   }
 
   login(user: UserModel) {
-
+    const authData = {
+      ...user,
+      returnSecureToken: true
+    }
+    return this.getQuery('signInWithPassword', authData).
+      pipe(map(response => {
+        return response;
+      }));
   }
 
   newUser(user: UserModel) {
@@ -43,10 +50,9 @@ export class AuthService {
       ...user,
       returnSecureToken: true
     }
-
     return this.getQuery('signUp', authData)
       .pipe(map(response => {
         return response;
-      }))
+      }));
   }
 }
