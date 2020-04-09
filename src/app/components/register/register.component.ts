@@ -16,15 +16,16 @@ import Swal from 'sweetalert2';
 })
 export class RegisterComponent implements OnInit {
 
-  user: UserModel;
+  user: UserModel = new UserModel();;
+  rememberUser: boolean = false;
 
   constructor(
     private authService: AuthService,
     private router: Router
   ) { }
 
-  ngOnInit(): void {
-    this.user = new UserModel();
+  ngOnInit() {
+
   }
 
   onSubmit(formRegister: NgForm) {
@@ -42,9 +43,16 @@ export class RegisterComponent implements OnInit {
     this.authService.newUser(this.user)
       .pipe(first())
       .subscribe(response => {
+
         console.log(response);
         Swal.close();
+
+        if(this.rememberUser) {
+          localStorage.setItem('email', this.user.email);
+        }
+
         this.router.navigateByUrl('/home');
+
       },
       (err) => {
         console.log(err.error.error.message);
