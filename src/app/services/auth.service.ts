@@ -16,8 +16,8 @@ export class AuthService {
   // Login
   // https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=[API_KEY]
 
-  private url = 'https://identitytoolkit.googleapis.com/v1/accounts:';
-  private apikey = 'AIzaSyA5tkcjwPPJn_7AWX5nuH7xWBCA4tp3_4A';
+  private url: string = 'https://identitytoolkit.googleapis.com/v1/accounts:';
+  private apikey: string = 'AIzaSyA5tkcjwPPJn_7AWX5nuH7xWBCA4tp3_4A';
 
   constructor(
     private http: HttpClient
@@ -25,23 +25,28 @@ export class AuthService {
 
   }
 
-  // getQuery(query) {
-  //   const url = `${ this.url }${ query }`;
-  //   return this.http.post(url, {  });
-  // }
+  getQuery(query, body) {
+    const url = `${this.url}${query}?key=${this.apikey}`;
+    return this.http.post(url, body);
+  }
 
   logout() {
-    // this.getQuery('')
-    // .pipe(map(response => {
 
-    // }))
   }
 
   login(user: UserModel) {
 
   }
 
- newUser(user: UserModel) {
+  newUser(user: UserModel) {
+    const authData = {
+      ...user,
+      returnSecureToken: true
+    }
 
- }
+    return this.getQuery('signUp', authData)
+      .pipe(map(response => {
+        return response;
+      }))
+  }
 }
