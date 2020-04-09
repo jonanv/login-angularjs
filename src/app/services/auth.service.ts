@@ -18,6 +18,7 @@ export class AuthService {
 
   private url: string = 'https://identitytoolkit.googleapis.com/v1/accounts:';
   private apikey: string = 'AIzaSyA5tkcjwPPJn_7AWX5nuH7xWBCA4tp3_4A';
+  userToken: string;
 
   constructor(
     private http: HttpClient
@@ -41,6 +42,7 @@ export class AuthService {
     }
     return this.getQuery('signInWithPassword', authData).
       pipe(map(response => {
+        this.saveToken(response['idToken']);
         return response;
       }));
   }
@@ -52,7 +54,24 @@ export class AuthService {
     }
     return this.getQuery('signUp', authData)
       .pipe(map(response => {
+        this.saveToken(response['idToken']);
         return response;
       }));
+  }
+
+  private saveToken(idToken: string) {
+    this.userToken = idToken;
+    localStorage.setItem('token', idToken);
+  }
+
+  private reedToken() {
+    const token = localStorage.getItem('token');
+    if (token) {
+      this.userToken = token;
+    }
+    else {
+      this.userToken = '';
+    }
+    return this.userToken;
   }
 }

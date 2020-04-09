@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { UserModel } from '../../models/user.model';
 import { AuthService } from '../../services/auth.service';
+
+// Imports
 import { first } from 'rxjs/operators';
 
 @Component({
