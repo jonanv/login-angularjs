@@ -15,8 +15,6 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = new UserModel();
-
-    this.user.email = 'jonan-vargas23@hotmail.com';
   }
 
   onSubmit(formRegister: NgForm) {
