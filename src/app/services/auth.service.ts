@@ -64,7 +64,7 @@ export class AuthService {
     localStorage.setItem('token', idToken);
   }
 
-  private reedToken() {
+  private readToken() {
     const token = localStorage.getItem('token');
     if (token) {
       this.userToken = token;
