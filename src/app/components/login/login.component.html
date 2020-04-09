@@ -9,7 +9,7 @@
 
                 <span *ngIf="formLogin.submitted && formLogin.controls['email'].errors" class="text-danger animated fadeIn">El correo es obligatorio</span>
                 <div class="wrap-input100 m-b-16">
-                    <input class="input100" type="text" name="email" placeholder="Email" [(ngModel)]="user.email" required email>
+                    <input class="input100" type="email" name="email" placeholder="Email" [(ngModel)]="user.email" email required>
                     <span class="focus-input100"></span>
                 </div>
 

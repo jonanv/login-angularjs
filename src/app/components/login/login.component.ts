@@ -18,6 +18,10 @@ export class LoginComponent implements OnInit {
   }
 
   login(formLogin: NgForm) {
+    if(formLogin.invalid) {
+      return;
+    }
+
     console.log(formLogin.value);
   }
 
