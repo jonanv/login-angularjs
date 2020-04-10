@@ -23,7 +23,9 @@ export class AuthService {
   constructor(
     private http: HttpClient
   ) {
-
+    // TODO: pierde el token al momento de recargar la pagina
+    // this.readToken();
+    // console.log(this.userToken);
   }
 
   getQuery(query, body) {
@@ -75,7 +77,8 @@ export class AuthService {
     return this.userToken;
   }
 
-  userAutehticate(): boolean {
-    return this.userToken.length > 2;
+  userAutheticate(): boolean {
+    let auth: boolean = this.userToken?.length > 2;
+    return auth;
   }
 }
