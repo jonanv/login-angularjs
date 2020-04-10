@@ -71,6 +71,15 @@ or
 ng g s services/auth --skipTests
 ```
 
+# Create guard without .spect
+```javascript
+ng generate guard guards/auth --skipTests 
+```
+or
+```javascript
+ng g g guards/auth --skipTests 
+```
+
 # Server local
 install global ```sudo npm i -g http-server```
 
