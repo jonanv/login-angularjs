@@ -23,9 +23,8 @@ export class AuthService {
   constructor(
     private http: HttpClient
   ) {
-    // TODO: pierde el token al momento de recargar la pagina
-    // this.readToken();
-    // console.log(this.userToken);
+    this.readToken();
+    console.log(this.userToken);
   }
 
   getQuery(query, body) {
@@ -35,6 +34,8 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('expiresIn');
+    this.userToken = '';
   }
 
   login(user: UserModel) {
@@ -64,9 +65,14 @@ export class AuthService {
   private saveToken(idToken: string) {
     this.userToken = idToken;
     localStorage.setItem('token', idToken);
+
+    let today = new Date();
+    today.setSeconds(3600);
+
+    localStorage.setItem('expiresIn', today.getTime().toString());
   }
 
-  private readToken() {
+  readToken() {
     const token = localStorage.getItem('token');
     if (token) {
       this.userToken = token;
@@ -78,7 +84,19 @@ export class AuthService {
   }
 
   userAutheticate(): boolean {
-    let auth: boolean = this.userToken?.length > 2;
-    return auth;
+    if(this.userToken?.length < 2) {
+      return false;
+    }
+
+    const expiresIn = Number(localStorage.getItem('expiresIn'));
+    const dateExpiresIn = new Date();
+    dateExpiresIn.setTime(expiresIn);
+
+    if(dateExpiresIn > new Date()) {
+      return true;
+    }
+    else {
+      return false;
+    }
   }
 }

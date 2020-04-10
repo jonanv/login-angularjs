@@ -27,9 +27,13 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    if(localStorage.getItem('email')) {
+    if (localStorage.getItem('email')) {
       this.user.email = localStorage.getItem('email');
       this.rememberUser = true;
+    }
+
+    if (this.authService.userToken) {
+      this.router.navigateByUrl('/home');
     }
   }
 
@@ -52,7 +56,7 @@ export class LoginComponent implements OnInit {
         console.log(response);
         Swal.close();
 
-        if(this.rememberUser) {
+        if (this.rememberUser) {
           localStorage.setItem('email', this.user.email);
         }
 
